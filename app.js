@@ -26,7 +26,7 @@ app.use((req,res,next)=>{
 	next()
 })
 
-app.get('/', (req,res,next) =>{
+app.use('/', (req,res,next) =>{
 
 	request.get({url: apiurl}, (err, resp, body) => {
 		let userdata = JSON.parse(body).results[0]
@@ -51,15 +51,25 @@ app.post('/mark-invitee', (req,res,next)=>{
 	res.redirect('/')
 })
 
-app.use('/going', (req,res,next) =>{
-	res.json(userList.users.going)
+app.get('/going', (req,res,next) =>{
+	const data = {
+		ulist: userList.users.going
+	}
+	res.render('userlist', data)
 })
-app.use('/notgoing', (req,res,next) =>{
-	res.json(userList.users.notgoing)
+app.get('/notgoing', (req,res,next) =>{
+	const data = {
+		ulist: userList.users.notgoing
+	}
+	res.render('userlist', data)
 })
 
-app.use('/', (req,res,next) =>{
-	res.render('main', req.User)
+app.get('/', (req,res,next) =>{
+	data = req.User
+	data.totalgoing = userList.users.going.length
+	data.totalnot = userList.users.notgoing.length
+	console.log(data)
+	res.render('main', data)
 })
 
 
