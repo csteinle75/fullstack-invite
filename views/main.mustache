@@ -3,36 +3,47 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="/styles/main.css">
 </head>
 <body>
 	{{>nav}}
-	<div>
-		<h2>Total Going:</h2><p>{{totalgoing}}</p>
-		<h2>Total Not Going:</h2><p>{{totalnot}}</p>
-	</div>
-	<div>
+	<div class="datadisplay">
 		<div>
-			<img src={{picture}} />
-			<h3>Name:</h3><p>{{name}}</p>
-			<h3>Phone:</h3><p>{{phone}}</p>
-			<h3>Email:</h3><p>{{email}}</p>
+			<div class="datadisplay">
+				<h4>Total Going:</h4><p>{{totalgoing}}</p>
+				<h4>Total Not Going:</h4><p>{{totalnot}}</p>
+			</div>
+			<div class="userbox">
+				<div>
+					<img src={{picture}} class="userpic" />
+					<div class="datadisplay">
+						<h3>Name:</h3><p>{{name}}</p>
+					</div>
+					<div class="datadisplay">
+						<h3>Phone:</h3><p>{{phone}}</p>
+					</div>
+					<div class="datadisplay">
+						<h3>Email:</h3><p>{{email}}</p>
+					</div>
+				</div>
+				<form action="/mark-invitee" method="post">
+					<input type="hidden" name="name" value="{{name}}" >
+					<input type="hidden" name="phone" value="{{phone}}" >
+					<input type="hidden" name="email" value="{{email}} ">
+					<input type="hidden" name="picture" value="{{picture}}" >
+					<input type="hidden" name="going" value='true' >
+					<button type="submit" class="submitbutton">Going</button>
+				</form>
+				<form action="/mark-invitee" method="post">
+					<input type="hidden" name="name" value="{{name}}" >
+					<input type="hidden" name="phone" value="{{phone}}" >
+					<input type="hidden" name="email" value="{{email}}" >
+					<input type="hidden" name="picture" value="{{picture}}" >
+					<input type="hidden" name="going" value='false' >
+					<button type="submit" class="submitbutton">Not Going</button>
+				</form>
+			</div>
 		</div>
-		<form action="/mark-invitee" method="post">
-			<input type="hidden" name="name" value="{{name}}" >
-			<input type="hidden" name="phone" value="{{phone}}" >
-			<input type="hidden" name="email" value="{{email}} ">
-			<input type="hidden" name="picture" value="{{picture}}" >
-			<input type="hidden" name="going" value='true' >
-			<button type="submit">Going</button>
-		</form>
-		<form action="/mark-invitee" method="post">
-			<input type="hidden" name="name" value="{{name}}" >
-			<input type="hidden" name="phone" value="{{phone}}" >
-			<input type="hidden" name="email" value="{{email}}" >
-			<input type="hidden" name="picture" value="{{picture}}" >
-			<input type="hidden" name="going" value='false' >
-			<button type="submit">Not Going</button>
-		</form>
 	</div>
 </body>
 </html>

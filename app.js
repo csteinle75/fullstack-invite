@@ -16,6 +16,7 @@ app.set('views', __dirname + '/views')
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
+app.use(express.static(path.join(__dirname, '/public')))
 
 
 
@@ -72,6 +73,9 @@ app.get('/', (req,res,next) =>{
 	res.render('main', data)
 })
 
+app.get('/json', (req,res,next) =>{
+	res.json(userList)
+})
 
 
 

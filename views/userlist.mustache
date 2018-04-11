@@ -3,16 +3,25 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="/styles/main.css">
 </head>
 <body>
 	{{>nav}}
-	{{#ulist}}
-		<div>
-			<img src={{picture}} />
-			<h3>Name:</h3><p>{{name}}</p>
-			<h3>Phone:</h3><p>{{phone}}</p>
-			<h3>Email:</h3><p>{{email}}</p>
-		</div>
-	{{/ulist}}
+	<div class="datadisplay">
+		{{#ulist}}
+			<div class="userbox">
+				<img src={{picture}} class="userpic" />
+				<div class="datadisplay">
+					<h3>Name:</h3><p>{{name}}</p>
+				</div>
+				<div class="datadisplay">
+					<h3>Phone:</h3><p>{{phone}}</p>
+				</div>
+				<div class="datadisplay">
+					<h3>Email:</h3><p>{{email}}</p>
+				</div>
+			</div>
+		{{/ulist}}
+	</div>
 </body>
 </html>
